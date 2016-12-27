@@ -14,20 +14,21 @@
             
             var xhr = new XMLHttpRequest();            
             xhr.open('POST', "https://apps.applozic.com/rest/ws/message/v2/send", true);
-            /*
+            
             xhr.setRequestHeader("Authorization", "Basic "+encodedString);
             xhr.setRequestHeader("UserId-Enabled", true);
             xhr.setRequestHeader("Application-Key", "26454089450343aeb79319e5496f4283b");
             xhr.setRequestHeader("Device-Key", deviceKey);
             xhr.setRequestHeader("Content-type", "application/json");
             xhr.setRequestHeader("Access-Token", "admin admin");
-            */
-            
-            
+                       
+            /*
             var email = json.email;
             var password = 'admin';
+			
 			email = 'viponrit@blueprint.co.th';
 			password = 'P@ssw0rd';
+			
             authorization = email+':'+password;
             encodedString = btoa(authorization);
             console.log(authorization);
@@ -36,6 +37,8 @@
             xhr.setRequestHeader("Apz-AppId", "26454089450343aeb79319e5496f4283b");
             xhr.setRequestHeader("Apz-Token", "Basic "+encodedString);
             xhr.setRequestHeader("Content-type", "application/json");
+			*/
+ 			
             xhr.onreadystatechange = function () { 
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     var json = JSON.parse(xhr.responseText);
@@ -51,6 +54,17 @@
         function login(){
             var xhr = new XMLHttpRequest();
             xhr.open('POST', "https://apps.applozic.com/rest/ws/register/client", true);
+			
+			var email = 'viponrit@blueprint.co.th';
+			var password = 'P@ssw0rd';
+			
+            authorization = email+':'+password;
+            encodedString = btoa(authorization);
+            console.log(authorization);
+            console.log(encodedString);
+            
+            xhr.setRequestHeader("Apz-AppId", "26454089450343aeb79319e5496f4283b");
+            xhr.setRequestHeader("Apz-Token", "Basic "+encodedString);
             xhr.setRequestHeader("Content-type", "application/json");
             
             xhr.onreadystatechange = function () { 
