@@ -1,41 +1,92 @@
 <?php
+function login(){
+	//API Url
+	$url = 'https://apps.applozic.com/rest/ws/register/client';
 
-//API Url
-$url = 'https://apps.applozic.com/rest/ws/register/client';
+	//Initiate cURL.
+	$ch = curl_init($url);
 
-//Initiate cURL.
-$ch = curl_init($url);
+	//The JSON data.
+	$jsonData = array(
+		'userId' => 'admin',
+		'email' => 'admin@wdchat.com',
+		'password' => 'admin',
+		'displayName' => 'admin',
+		'applicationId' => '26454089450343aeb79319e5496f4283b',
+		'deviceType' => '4',
+		'registrationId' => '',
+		'pushNotificationFormat' => '',
+		'userTypeId' => '',
+		'contactNumber' => ''
+	);
 
-//The JSON data.
-$jsonData = array(
-    'userId' => 'admin',
-    'email' => 'admin@wdchat.com',
-	'password' => 'admin',
-	'displayName' => 'admin',
-	'applicationId' => '26454089450343aeb79319e5496f4283b',
-	'deviceType' => '4',
-	'registrationId' => '',
-	'pushNotificationFormat' => '',
-	'userTypeId' => '',
-	'contactNumber' => ''
-);
+	//Header data
+	//Set the content type to application/json
+	$headerData = array(
+		'Content-Type: application/json'
+	);
 
-//Header data
-//Set the content type to application/json
-$headerData = array(
-	'Content-Type: application/json'
-);
+	//Encode the array into JSON.
+	$jsonDataEncoded = json_encode($jsonData);
 
-//Encode the array into JSON.
-$jsonDataEncoded = json_encode($jsonData);
+	//Tell cURL that we want to send a POST request.
+	//curl_setopt($ch, CURLOPT_POST, 1);
+	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST'); 
 
-//Tell cURL that we want to send a POST request.
-curl_setopt($ch, CURLOPT_POST, 1);
+	//Attach our encoded JSON string to the POST fields.
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonDataEncoded);
 
-//Attach our encoded JSON string to the POST fields.
-curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonDataEncoded);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, $headerData); 
+	
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-curl_setopt($ch, CURLOPT_HTTPHEADER, $headerData); 
+	//Execute the request
+	$result = curl_exec($ch);	
+	
+	// Decode the response
+	$responseData = json_decode($result, TRUE);
+	echo $responseData;
+}
 
-//Execute the request
-$result = curl_exec($ch);
+	//API Url
+	$url = 'https://apps.applozic.com/rest/ws/message/v2/send';
+
+	//Initiate cURL.
+	$ch = curl_init($url);
+
+	//Set Request Body (JSON data)
+	$jsonData = array(
+		'to' => 'pu1',
+		'message' => 'Hi pu1'
+	);
+
+	//Set Request Header
+    $authorization = $userId.':'.$deviceKey;	
+	$encodedString = base64_encode($authorization);
+	$headerData = array(
+		'Access-Token : admin admin',
+		'Application-Key : 26454089450343aeb79319e5496f4283b',
+		'Authorization : Basic ' . $encodedString,
+		'Content-Type : application/json',
+		'Device-Key : ' . $deviceKey,
+		'UserId-Enabled : true'
+		
+	);
+
+	//Encode the array into JSON.
+	$jsonDataEncoded = json_encode($jsonData);
+
+	//Tell cURL that we want to send a POST request.
+	//curl_setopt($ch, CURLOPT_POST, 1);
+	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST'); 
+
+	//Attach our encoded JSON string to the POST fields.
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonDataEncoded);
+
+	curl_setopt($ch, CURLOPT_HTTPHEADER, $headerData); 
+	
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+	//Execute the request
+	$result = curl_exec($ch);
+}
