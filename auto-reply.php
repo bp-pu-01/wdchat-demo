@@ -20,6 +20,12 @@ $jsonData = array(
 	'contactNumber' => ''
 );
 
+//Header data
+//Set the content type to application/json
+$headerData = array(
+	'Content-Type: application/json'
+);
+
 //Encode the array into JSON.
 $jsonDataEncoded = json_encode($jsonData);
 
@@ -29,8 +35,7 @@ curl_setopt($ch, CURLOPT_POST, 1);
 //Attach our encoded JSON string to the POST fields.
 curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonDataEncoded);
 
-//Set the content type to application/json
-curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json')); 
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headerData); 
 
 //Execute the request
 $result = curl_exec($ch);
