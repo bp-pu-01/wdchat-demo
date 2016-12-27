@@ -39,17 +39,18 @@ function login(){
 	curl_setopt($ch, CURLOPT_HTTPHEADER, $headerData); 
 	
 	//return the transfer as a string 
+	/*
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	
 	curl_setopt($ch, CURLOPT_FOLLOWLOCATION , true);
 	curl_setopt($ch, CURLOPT_AUTOREFERER , true);
-	
+	*/
 	
 	//Execute the request
 	$result = curl_exec($ch);
 	
 	// Decode the response
-	//$responseData = json_decode($result, TRUE);
+	$responseData = json_decode($result, TRUE);
 	
 	
 }
