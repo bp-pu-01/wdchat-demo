@@ -55,7 +55,8 @@
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     var json = JSON.parse(xhr.responseText);
                     console.log(json);
-                    sendMessage(json);
+                    //sendMessage(json);
+					document.getElementById('demo').innerHTML = json;
                 }
             }
             var data1 = JSON.stringify({"userId":"admin", "email":"admin@wdchat.com", "password":"admin", "displayName":"admin", "applicationId":"26454089450343aeb79319e5496f4283b", "deviceType":"4", "registrationId":"", "pushNotificationFormat":"", "userTypeId":"", "contactNumber":""});
@@ -64,5 +65,6 @@
         </script>
     </head>
     <body onload="login()">
+	<p id="demo"></p>
     </body>
 </html>
