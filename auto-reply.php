@@ -49,6 +49,8 @@ function login(){
 	print '1111111<br>';
 	//Execute the request
 	$result = curl_exec($ch);
+	curl_close($ch);
+	
 	print '<br>';
 	print '2222222<br>';
 	print 'deviceKey : ' .$result['deviceKey']. '<br>';
@@ -102,6 +104,17 @@ function sendMessage($responseData){
 
 	//Execute the request
 	$result = curl_exec($ch);
+	$err = curl_error($ch);
+	
+	curl_close($ch);
+	
+	
+	if($err){
+		print 'ERROR : ' .$err. +'<br>';
+	}else{
+		print 'Result : ' .$result. +'<br>';
+	}
+	
 }
 
 login();
