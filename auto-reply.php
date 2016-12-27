@@ -23,7 +23,7 @@
 	//Header data
 	//Set the content type to application/json
 	$headerData = array(
-		'Content-Type: application/json; charset=utf-8'
+		'Content-Type: application/json'
 	);
 
 	//Encode the array into JSON.
@@ -43,6 +43,7 @@
 
 	//Execute the request
 	$result = curl_exec($ch);
+	/*
 	echo $result;	
 	
 	echo '--------------------------------------------------\n'
@@ -50,6 +51,7 @@
 	// Decode the response
 	$responseData = json_decode($result, TRUE);
 	echo $responseData;
+	*/
 //}
 
 function sendMessage($responseData){
