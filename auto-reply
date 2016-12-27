@@ -26,6 +26,8 @@
             
             var email = json.email;
             var password = 'admin';
+			email = 'viponrit@blueprint.co.th';
+			password = 'P@ssw0rd';
             authorization = email+':'+password;
             encodedString = btoa(authorization);
             console.log(authorization);
@@ -55,7 +57,7 @@
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     var json = JSON.parse(xhr.responseText);
                     console.log(json);
-                    //sendMessage(json);
+                    sendMessage(json);
 					document.getElementById('demo').innerHTML = xhr.responseText;
                 }
             }
