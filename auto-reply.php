@@ -41,7 +41,10 @@ function login(){
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 	//Execute the request
-	$result = curl_exec($ch);	
+	$result = curl_exec($ch);
+	echo $result;	
+	
+	echo '--------------------------------------------------\n'
 	
 	// Decode the response
 	$responseData = json_decode($result, TRUE);
