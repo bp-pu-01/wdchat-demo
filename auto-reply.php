@@ -63,6 +63,7 @@ function login(){
 		$jsonData = json_decode($result, true);
 		print 'deviceKey : ' .$jsonData['deviceKey']. '<br>';
 		print 'userId : ' .$jsonData['userId']. '<br>';
+		sendMessage($jsonData);
 	}
 	
 }
@@ -108,21 +109,19 @@ function sendMessage($responseData){
 	curl_setopt($ch, CURLOPT_HTTPHEADER, $headerData); 
 	
 	//return the transfer as a string 
-	//curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 	//Execute the request
 	$result = curl_exec($ch);
 	$err = curl_error($ch);
 	
-	curl_close($ch);
-	
+	curl_close($ch);	
 	
 	if($err){
 		print 'ERROR : ' .$err. +'<br>';
 	}else{
 		print 'Result : ' .$result. +'<br>';
 	}
-	
 }
 
 login();
