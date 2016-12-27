@@ -23,14 +23,14 @@
 	//Header data
 	//Set the content type to application/json
 	$headerData = array(
-		'Content-Type: application/json'
+		'Content-Type: application/json; charset=utf-8'
 	);
 
 	//Encode the array into JSON.
 	$jsonDataEncoded = json_encode($jsonData);
 
 	//Tell cURL that we want to send a POST request.
-	curl_setopt($ch, CURLOPT_POST, 1);
+	curl_setopt($ch, CURLOPT_POST, true);
 	//curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST'); 
 
 	//Attach our encoded JSON string to the POST fields.
@@ -38,7 +38,8 @@
 
 	curl_setopt($ch, CURLOPT_HTTPHEADER, $headerData); 
 	
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	//return the transfer as a string 
+	//curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 	//Execute the request
 	$result = curl_exec($ch);
@@ -73,7 +74,7 @@ function sendMessage($responseData){
 		'Access-Token : admin admin',
 		'Application-Key : 26454089450343aeb79319e5496f4283b',
 		'Authorization : Basic ' . $encodedString,
-		'Content-Type : application/json',
+		'Content-Type : application/json; charset=utf-8',
 		'Device-Key : ' . $deviceKey,
 		'UserId-Enabled : true'
 		
@@ -91,8 +92,10 @@ function sendMessage($responseData){
 
 	curl_setopt($ch, CURLOPT_HTTPHEADER, $headerData); 
 	
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	//return the transfer as a string 
+	//curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 	//Execute the request
 	$result = curl_exec($ch);
 }
+?>
