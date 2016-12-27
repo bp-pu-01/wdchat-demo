@@ -53,15 +53,16 @@ function login(){
 	curl_close($ch);
 	
 	print '<br>';
-	print '2222222<br>';
-	print 'deviceKey : ' .$result['deviceKey']. '<br>';
-	print 'userId : ' .$result['userId']. '<br>';
+	print '2222222<br>';	
 	print '3333333<br>';
 	
 	if($err){
 		print 'ERROR : ' .$err. +'<br>';
 	}else{
 		print 'Result : ' .$result. +'<br>';
+		$jsonData = json_decode($result, true);
+		print 'deviceKey : ' .$jsonData['deviceKey']. '<br>';
+		print 'userId : ' .$jsonData['userId']. '<br>';
 	}
 	
 }
