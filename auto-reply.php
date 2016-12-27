@@ -48,6 +48,7 @@ function login(){
 	echo $responseData;
 }
 
+function sendMessage($responseData){
 	//API Url
 	$url = 'https://apps.applozic.com/rest/ws/message/v2/send';
 
@@ -61,6 +62,8 @@ function login(){
 	);
 
 	//Set Request Header
+	$deviceKey = $responseData['deviceKey'];
+	$userId = $responseData['userId'];
     $authorization = $userId.':'.$deviceKey;	
 	$encodedString = base64_encode($authorization);
 	$headerData = array(
