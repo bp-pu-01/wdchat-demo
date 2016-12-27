@@ -49,6 +49,8 @@ function login(){
 	print '1111111<br>';
 	//Execute the request
 	$result = curl_exec($ch);
+	$err = curl_error($ch);
+	
 	curl_close($ch);
 	
 	print '<br>';
@@ -56,6 +58,12 @@ function login(){
 	print 'deviceKey : ' .$result['deviceKey']. '<br>';
 	print 'userId : ' .$result['userId']. '<br>';
 	print '3333333<br>';
+	
+	if($err){
+		print 'ERROR : ' .$err. +'<br>';
+	}else{
+		print 'Result : ' .$result. +'<br>';
+	}
 	
 }
 
