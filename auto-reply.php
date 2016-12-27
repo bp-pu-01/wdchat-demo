@@ -45,7 +45,6 @@ function login(){
 	curl_setopt($ch, CURLOPT_AUTOREFERER , true);
 	*/
 	
-	print '1111111<br>';
 	//Execute the request
 	$result = curl_exec($ch);
 	$err = curl_error($ch);
@@ -53,16 +52,12 @@ function login(){
 	curl_close($ch);
 	
 	print '<br>';
-	print '2222222<br>';	
-	print '3333333<br>';
 	
 	if($err){
 		print 'ERROR : ' .$err. +'<br>';
 	}else{
 		print 'Result : ' .$result. +'<br>';
 		$jsonData = json_decode($result, true);
-		print 'deviceKey : ' .$jsonData['deviceKey']. '<br>';
-		print 'userId : ' .$jsonData['userId']. '<br>';
 		sendMessage($jsonData);
 	}
 	
@@ -84,8 +79,12 @@ function sendMessage($responseData){
 	//Set Request Header
 	$deviceKey = $responseData['deviceKey'];
 	$userId = $responseData['userId'];
+	print 'deviceKey : ' .$responseData['deviceKey']. +'<br>';
+	print 'userId : ' .$responseData['userId']. +'<br>';
     $authorization = $userId.':'.$deviceKey;	
 	$encodedString = base64_encode($authorization);
+	
+	print 'encodedString : ' .$encodedString. +'<br>';
 	$headerData = array(
 		'Access-Token : admin admin',
 		'Application-Key : 26454089450343aeb79319e5496f4283b',
