@@ -2,8 +2,14 @@
     <head>
         <script type="text/javascript"> 
         function sendMessage(json){
+		
+			//var url = 'https://apps.applozic.com/rest/ws/message/send';
+			var url = 'https://apps.applozic.com/rest/ws/message/v2/send';
+			
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', url, true);
             
-            var userId = json.userId;
+			var userId = json.userId;
             var deviceKey = json.deviceKey;
             var authorization = userId+':'+deviceKey;
             
@@ -11,18 +17,13 @@
             var encodedString = btoa(authorization);
             console.log(authorization);
             console.log(encodedString);
-            
-            var xhr = new XMLHttpRequest(); 
-//https://apps.applozic.com/rest/ws/message/send	
-//https://apps.applozic.com/rest/ws/message/v2/send		
-            xhr.open('POST', "https://apps.applozic.com/rest/ws/message/send", true);
-            
+			
             xhr.setRequestHeader("Authorization", "Basic "+encodedString);
             xhr.setRequestHeader("UserId-Enabled", true);
             xhr.setRequestHeader("Application-Key", "26454089450343aeb79319e5496f4283b");
             xhr.setRequestHeader("Device-Key", deviceKey);
             xhr.setRequestHeader("Content-type", "application/json");
-            xhr.setRequestHeader("Access-Token", "admin admin");
+            //xhr.setRequestHeader("Access-Token", "admin admin");
                        
             /*
             var email = json.email;
@@ -46,7 +47,7 @@
                     var json = JSON.parse(xhr.responseText);
                     console.log(json);
                 }else{
-                    console.log(xhr);
+                    console.log(xhr.status + ':' + xhr.responseText);
                 }
             }
             var data2 = JSON.stringify({"to":"pu1", "message":"Hi pu1"});
@@ -56,7 +57,7 @@
         function login(){
             var xhr = new XMLHttpRequest();
             xhr.open('POST', "https://apps.applozic.com/rest/ws/register/client", true);
-			
+			/*
 			var email = 'viponrit@blueprint.co.th';
 			var password = 'P@ssw0rd';
 			
@@ -67,6 +68,7 @@
             
             xhr.setRequestHeader("Apz-AppId", "26454089450343aeb79319e5496f4283b");
             xhr.setRequestHeader("Apz-Token", "Basic "+encodedString);
+			*/
             xhr.setRequestHeader("Content-type", "application/json");
             
             xhr.onreadystatechange = function () { 
