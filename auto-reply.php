@@ -1,5 +1,5 @@
 <?php
-//function login(){
+function login(){
 	//API Url
 	$url = 'https://apps.applozic.com/rest/ws/register/client';
 
@@ -43,7 +43,7 @@
 
 	//Execute the request
 	$result = curl_exec($ch);
-	/*
+	
 	echo $result;	
 	
 	echo '--------------------------------------------------\n'
@@ -51,8 +51,8 @@
 	// Decode the response
 	$responseData = json_decode($result, TRUE);
 	echo $responseData;
-	*/
-//}
+	
+}
 
 function sendMessage($responseData){
 	//API Url
@@ -100,3 +100,5 @@ function sendMessage($responseData){
 	//Execute the request
 	$result = curl_exec($ch);
 }
+
+login();
