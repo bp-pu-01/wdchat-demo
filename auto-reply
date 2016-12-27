@@ -12,8 +12,10 @@
             console.log(authorization);
             console.log(encodedString);
             
-            var xhr = new XMLHttpRequest();            
-            xhr.open('POST', "https://apps.applozic.com/rest/ws/message/v2/send", true);
+            var xhr = new XMLHttpRequest(); 
+//https://apps.applozic.com/rest/ws/message/send	
+//https://apps.applozic.com/rest/ws/message/v2/send		
+            xhr.open('POST', "https://apps.applozic.com/rest/ws/message/send", true);
             
             xhr.setRequestHeader("Authorization", "Basic "+encodedString);
             xhr.setRequestHeader("UserId-Enabled", true);
