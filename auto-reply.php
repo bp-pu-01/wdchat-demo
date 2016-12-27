@@ -39,9 +39,8 @@ function login(){
 	curl_setopt($ch, CURLOPT_HTTPHEADER, $headerData); 
 	
 	//return the transfer as a string 
-	/*
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	
+	/*	
 	curl_setopt($ch, CURLOPT_FOLLOWLOCATION , true);
 	curl_setopt($ch, CURLOPT_AUTOREFERER , true);
 	*/
