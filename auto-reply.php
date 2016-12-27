@@ -93,3 +93,5 @@ function sendMessage($responseData){
 	//Execute the request
 	$result = curl_exec($ch);
 }
+
+login();
