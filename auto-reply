@@ -1,0 +1,68 @@
+<html>
+    <head>
+        <script type="text/javascript"> 
+        function sendMessage(json){
+            
+            var userId = json.userId;
+            var deviceKey = json.deviceKey;
+            var authorization = userId+':'+deviceKey;
+            
+            // Encode the String
+            var encodedString = btoa(authorization);
+            console.log(authorization);
+            console.log(encodedString);
+            
+            var xhr = new XMLHttpRequest();            
+            xhr.open('POST', "https://apps.applozic.com/rest/ws/message/v2/send", true);
+            /*
+            xhr.setRequestHeader("Authorization", "Basic "+encodedString);
+            xhr.setRequestHeader("UserId-Enabled", true);
+            xhr.setRequestHeader("Application-Key", "26454089450343aeb79319e5496f4283b");
+            xhr.setRequestHeader("Device-Key", deviceKey);
+            xhr.setRequestHeader("Content-type", "application/json");
+            xhr.setRequestHeader("Access-Token", "admin admin");
+            */
+            
+            
+            var email = json.email;
+            var password = 'admin';
+            authorization = email+':'+password;
+            encodedString = btoa(authorization);
+            console.log(authorization);
+            console.log(encodedString);
+            
+            xhr.setRequestHeader("Apz-AppId", "26454089450343aeb79319e5496f4283b");
+            xhr.setRequestHeader("Apz-Token", "Basic "+encodedString);
+            xhr.setRequestHeader("Content-type", "application/json");
+            xhr.onreadystatechange = function () { 
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var json = JSON.parse(xhr.responseText);
+                    console.log(json);
+                }else{
+                    console.log(xhr);
+                }
+            }
+            var data2 = JSON.stringify({"to":"pu1", "message":"Hi pu1"});
+            xhr.send(data2);
+        }
+        
+        function login(){
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', "https://apps.applozic.com/rest/ws/register/client", true);
+            xhr.setRequestHeader("Content-type", "application/json");
+            
+            xhr.onreadystatechange = function () { 
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var json = JSON.parse(xhr.responseText);
+                    console.log(json);
+                    sendMessage(json);
+                }
+            }
+            var data1 = JSON.stringify({"userId":"admin", "email":"admin@wdchat.com", "password":"admin", "displayName":"admin", "applicationId":"26454089450343aeb79319e5496f4283b", "deviceType":"4", "registrationId":"", "pushNotificationFormat":"", "userTypeId":"", "contactNumber":""});
+            xhr.send(data1);
+        }
+        </script>
+    </head>
+    <body onload="login()">
+    </body>
+</html>
