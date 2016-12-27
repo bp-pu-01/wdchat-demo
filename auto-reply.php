@@ -46,12 +46,15 @@ function login(){
 	curl_setopt($ch, CURLOPT_AUTOREFERER , true);
 	*/
 	
+	print '1111111<br>';
 	//Execute the request
 	$result = curl_exec($ch);
 	
+	print '2222222<br>';
 	// Decode the response
 	$responseData = json_decode($result, TRUE);
 	
+	print '3333333<br>';
 	
 }
 
